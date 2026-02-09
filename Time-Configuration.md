@@ -31,7 +31,7 @@ Mon Feb  9 02:12:13 PM PST 2026
 ```
 ### 2.  Time Zone Configuration
 
-The primary objective was to change the system time zone from PST to US Eastern Time (America/New_York).
+The primary objective was to change the system time zone from PST to US central Time (America/North_Dakota/New_salem).
 
 First, I identified the exact time zone name required by the system by listing all available zones and filtering the results.
 
