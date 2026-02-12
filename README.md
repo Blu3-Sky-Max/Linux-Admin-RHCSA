@@ -8,8 +8,12 @@ This directory is dedicated to my journey toward becoming a **Red Hat Certified 
 - **Focus:** Partitioning disks with `parted`, file system creation, and persistent mounting via `/etc/fstab`.
 - **Status:** Completed.
  
-### Lab 02: [Time Zone & NTP Configuration](Time-Configuration.md)
+### **Lab 02:** [Time Zone & NTP Configuration](Time-Configuration.md)
 -   **Focus:** Configuring the system time zone, verifying settings with `timedatectl`, and understanding NTP synchronization.
+-   **Status:** Completed.
+
+### **Lab 03:** Password Policy Management
+-   **Focus:** Configuring password aging via `chage`, auditing settings in `/etc/shadow`, and managing account locking/unlocking (`passwd -l`).
 -   **Status:** Completed.
 
 ---
