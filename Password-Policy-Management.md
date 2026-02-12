@@ -1,4 +1,4 @@
-# 🔒 Auditing & Enforcing Password Aging Policies (RHCSA Focus)
+# 🔒 Auditing & Enforcing Password Aging Policies 
 
 **Author:** Usman O. Olanrewaju (Blu3 Sky)  
 **Date:** 2026/02/12  
@@ -62,13 +62,13 @@ $ sudo chage -E 2026-05-14 -m 0 -M 90 -W 10 -d 0 -I 0 testuser
 **Verification of New Policy** 
 ```bash 
 $ sudo chage -l testuser
-Last password change                                    : password must be changed   <---(New requirement for using `-d 0` )
+Last password change                                    : password must be changed   <-(New requirement for using `-d 0` )
 Password expires                                        : password must be changed
 Password inactive                                       : password must be changed
-Account expires                                         : May 14, 2026               <---(Account expiration is set) 
+Account expires                                         : May 14, 2026               <-(Account expiration is set) 
 Minimum number of days between password change          : 0
-Maximum number of days between password change          : 90                         <---(90days set)  
-Number of days of warning before password expires       : 10                         <---(Warning 10 times before password exp) 
+Maximum number of days between password change          : 90                         <-(90days set)  
+Number of days of warning before password expires       : 10                         <-(Warning 10 times before password exp) 
 
 
 ## 4.Advanced Account & Policy Management(`passwd`)  
@@ -84,16 +84,23 @@ testuser P 2026-02-12 0 90 10 0
 ### Account Locking / Unlocking with `passwd`
 These commands directly manipulate the password hash field in `/etc/shadow` to lock or unlock an account without changing the password.
 
-*   **Lock Account:**
-    ```bash
+#### Lock Account:
+```bash
    $ sudo passwd -l testuser
     passwd: password changed.
-    ```
-*   **Unlock Account:**
-    ```bash
+   $ sudo grep testuser /etc/shadow 
+testuser:!$y$j9T$ZezCpu3DrVzGrfbMQ65YY.$FGYmpXIkHn2n5N80TVMkEGxovL.MzfsJL6fLCfIOv63:20496:0:90:10:0:20861:
+```
+ The '!' at the start of the hash field locks the account.
+
+
+#### Unlock Account:
+```bash
     $ sudo passwd -u testuser
     passwd: password changed.
-    ```
+    $ sudo grep testuser /etc/shadow 
+testuser:$y$j9T$ZezCpu3DrVzGrfbMQ65YY.$FGYmpXIkHn2n5N80TVMkEGxovL.MzfsJL6fLCfIOv63:20496:0:90:10:0:20861:
+ ```
 
 
 ## 5. Advanced Command Review
