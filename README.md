@@ -12,7 +12,7 @@ This directory is dedicated to my journey toward becoming a **Red Hat Certified 
 -   **Focus:** Configuring the system time zone, verifying settings with `timedatectl`, and understanding NTP synchronization.
 -   **Status:** Completed.
 
-### **Lab 03:** Password Policy Management
+### **Lab 03:** [Password Policy Management](Password-Policy-Management.md)
 -   **Focus:** Configuring password aging via `chage`, auditing settings in `/etc/shadow`, and managing account locking/unlocking (`passwd -l`).
 -   **Status:** Completed.
 
