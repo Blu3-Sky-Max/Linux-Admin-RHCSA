@@ -69,7 +69,7 @@ Account expires                                         : May 14, 2026          
 Minimum number of days between password change          : 0
 Maximum number of days between password change          : 90                         <-(90days set)  
 Number of days of warning before password expires       : 10                         <-(Warning 10 times before password exp) 
-
+```
 
 ## 4.Advanced Account & Policy Management(`passwd`)  
 
