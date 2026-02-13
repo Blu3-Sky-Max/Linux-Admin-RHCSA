@@ -56,7 +56,7 @@ implement the following required policy for testuser:
 ```bash 
 #Syntax: chage -E(expiry date) -I(inactive) -m(min days) -M(max days) -W(warning) -d(last change date)
 
-$ sudo chage -E 2026-05-14 -m 0 -M 90 -W 10 -d 0 -I 0 testuser
+$ sudo chage -E 2026-05-14 -m 0 -M 90 -W 10 -d 0 -I 14 testuser
 ```
 
 **Verification of New Policy** 
