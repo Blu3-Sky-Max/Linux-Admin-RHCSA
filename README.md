@@ -16,5 +16,9 @@ This directory is dedicated to my journey toward becoming a **Red Hat Certified 
 -   **Focus:** Configuring password aging via `chage`, auditing settings in `/etc/shadow`, and managing account locking/unlocking (`passwd -l`).
 -   **Status:** Completed.
 
+### **Lab 04:** [👤 User & Access Control Management](./User-Mgmt-Labs)
+-   **Focus:** Mastering user lifecycle (`useradd`, `usermod`, `userdel`), group operations (`groupadd`, `groupmod`), and granular file permission manipulation (`chown`, `chmod` octal/symbolic).
+-   **Status:** Completed.
+
 ---
 **Environment:** Fedora (Host), Rocky Linux (Lab),RHEL (Lab),  Framework 13.
