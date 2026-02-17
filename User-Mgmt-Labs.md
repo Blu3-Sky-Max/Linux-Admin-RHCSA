@@ -1,4 +1,4 @@
-# 👤 User, Group, and Access Control Management (RHCSA Core)
+# 👤 User, Group, and Access Control Management 
 
 **Author:** Usman O. Olanrewaju (Blu3 Sky)  
 **Date:** 2026/02/16  
@@ -50,8 +50,9 @@ dba:x:6000:blu3sky
 manuser:x:1005: 
 newlife:x:7000:testuser
 testuser:x:1005:
+```
+#### Delete user with recursive removal of home directory: 
 
-### Delete user with recursive removal of home directory: 
 ```bash
 sudo userdel -r user1
 $ tail -1 /etc/passwd
@@ -143,10 +144,8 @@ ls -l  testuser
 ```
 #### Changing Owner and Group Recursively (Directory):
 ```bash 
-# -R flag applies changes to all contents within the directory
 $ sudo chown -R user100:blu3sky playground
 $ ls -ld playground
-# Output confirms ownership change on the directory itself
 drwxr-xr-x. 2 user100 blu3sky 32 Feb 5 11:26 playground
 ```
 #### Changing Owner and Group Recursively (File):
