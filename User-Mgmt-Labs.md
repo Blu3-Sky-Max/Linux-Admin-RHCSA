@@ -158,6 +158,7 @@ $ ls -l  testuser
 Demonstrate setting explicit permissions using both octal and symbolic modes
 
 #### Symbolic Method (Adding Permissions):
+
 ```bash 
 $ sudo chmod +x testuser
 $ ls -l  testuser
