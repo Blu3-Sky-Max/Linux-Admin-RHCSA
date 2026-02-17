@@ -51,6 +51,18 @@ manuser:x:1005:
 newlife:x:7000:testuser
 testuser:x:1005:
 ```
+#### Deleting user from group: 
+```bash 
+$ sudo gpasswd -d testuser newlife  
+Removing user testuser from group newlife
+
+$ tail -5 /etc/group 
+user200:x:1002:
+dba:x:6000:blu3sky
+manuser:x:1005: 
+newlife:x:7000:
+testuser:x:1005:
+```
 #### Delete user with recursive removal of home directory: 
 
 ```bash
