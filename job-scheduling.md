@@ -81,7 +81,12 @@ $ crontab -l
 ```
 #### Adding to jobs 
 Scheduling  to  execute at every fifth minute past the hour between 10:00 a.m. and 11:00 a.m. on the fifth and twentieth of every month 
-```bash 
+```bash
+ 
+$ crontab -e 
+crontab: installing new crontab
+Backup of vm3's previous crontab saved to /home/vm3/.cache/crontab/crontab.bak
+
 $ crontab -l 
 05  10  *  * * echo "Hello World is super crazy " > /home/vm3/usman.txts 
 */5 10-12 5,20 * * echo " Usman is always in the library " >> /home/vm3/usman.txts 
@@ -105,4 +110,4 @@ Key Locations to Verify Job Status/Logs:
 * Backup: On some systems, backups of the crontab may exist in ~/cache/cron/cron.bak.
 
 ### Security Consideration:
-Recursion, as noted in your previous attempt, is a risk here. Scripts scheduled via cron that re-schedule themselves must be carefully monitored to prevent infinite loops that can exhaust system resources.
+Recursion, as noted in our previous attempt, is a risk here. Scripts scheduled via cron that re-schedule themselves must be carefully monitored to prevent infinite loops that can exhaust system resources.
