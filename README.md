@@ -19,7 +19,7 @@ This directory is dedicated to my journey toward becoming a **Red Hat Certified 
 ### **Lab 04:** [👥 User & Access Control Management](User-Mgmt-Labs.md)
 -   **Focus:** Mastering user lifecycle (`useradd`, `usermod`, `userdel`), group operations (`groupadd`, `groupmod`), and granular file permission manipulation (`chown`, `chmod` octal/symbolic).
 -   **Status:** Completed.
-### **Lab 04:** [⏱️ Job Scheduling Management](job-scheduling.md)
+### **Lab 05:** [⏱️ Job Scheduling Management](job-scheduling.md)
 -   **Focus:** Implementing and managing one-time jobs (`at`) and recurring tasks (`cron`), including understanding user access control (`/etc/at.allow`) and log locations.
 -   **Status:** Completed.
 ---
