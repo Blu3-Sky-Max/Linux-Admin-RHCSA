@@ -22,5 +22,8 @@ This directory is dedicated to my journey toward becoming a **Red Hat Certified 
 ### **Lab 05:** [⏱️ Job Scheduling Management](job-scheduling.md)
 -   **Focus:** Implementing and managing one-time jobs (`at`) and recurring tasks (`cron`), including understanding user access control (`/etc/at.allow`) and log locations.
 -   **Status:** Completed.
+-   **Lab 06:** [📦 Package Management & Integrity With RPM](RPM-Package-Management.md)
+-   **Focus:** Managing RPMs with `rpm`, dependency resolution repository checks, and verifying package signatures.
+-   **Status:** Completed.
 ---
 **Environment:** Fedora (Host), Rocky Linux (Lab),RHEL (Lab),  Framework 13.
