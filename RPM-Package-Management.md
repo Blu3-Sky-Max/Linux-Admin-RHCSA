@@ -76,7 +76,7 @@ $ sudo rpm -e zsh-5.*
 ### what package provides a command:
 ```bash 
 $ rpm -qf /bin/ls
-coreutils-9.5-6.el10.x86_64  # the output shows the package owner
+coreutils-9.5-6.el10.x86_64  # the output shows the owner of command /bin/ls 
 ```
 ## 3. Advanced Operations: Extracting Package Contents 
 
