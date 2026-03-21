@@ -3,10 +3,11 @@
 **Author:** Usman O. Olanrewaju (Blu3 Sky)  
 **Date:** 2026/03/03  
 **Focus:** Advanced CLI package management on RHEL/Fedora, including repository configuration, package integrity verification, and DNF group management.
+
 **modify:** 2026/03/21 
 
 Danified yellowdog update modified (DNF) package management:
-A DNA repository (yum repository or simply a repo) is a digital library for storing software packages and metadata.
+A DNF repository (yum repository or simply a repo) is a digital library for storing software packages and metadata.
 
 ## 1. Repository Configuration and State (`/etc/yum.repos.d`)
 
