@@ -1,4 +1,5 @@
-# 📦 RHEL Package Management  and Integrity Checks
+# 📦 RHEL Package Management: RPM Repository Auditing
+
 
 **Author:** Usman O. Olanlanrewaju (Blu3 Sky)  
 **Date:** 2026/03/03  
@@ -54,7 +55,7 @@ Verifying...                          ################################# [100%]
 Preparing...                          ################################# [100%]
     package setup-2.14.5-4.el10.noarch is already installed
 ```
-### Looking for a pacakage path: 
+### Looking for a package path: 
 ```bash
 $ find /mnt -name zsh* 
 /mnt/BaseOS/Packages/zsh-5.9-15.el10.x86_64.rpm
