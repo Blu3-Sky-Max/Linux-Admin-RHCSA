@@ -25,7 +25,7 @@ This directory is dedicated to my journey toward becoming a **Red Hat Certified 
 ### **Lab 06:** [📦 Package Management & Integrity With RPM](RPM-Package-Management.md)
 -   **Focus:** Managing RPMs with `rpm`, dependency resolution repository checks, and verifying package signatures.
 -   **Status:** Completed.
-### **Lab 06:** [📦 Package Management & Integrity with DNF](DNF-Package-Management.md)
+### **Lab 07:** [📦 Package Management & Integrity with DNF](DNF-Package-Management.md)
 -   **Focus:** Managing packages with `dnf`, repository configuration (ISO mounting), and package integrity verification.
 -   **Status:** Completed.
 ---
