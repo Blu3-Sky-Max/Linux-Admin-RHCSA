@@ -6,7 +6,7 @@
 
 
 
-> Flatpak is an application sandboxing and distribution framework designed to provide secure, portable, and version-flexible software deployment across different Linux distributions. It allows users to install applications in isolated environments, separating them from the host system for enhanced security and stability.
+Flatpak is an application sandboxing and distribution framework designed to provide secure, portable, and version-flexible software deployment across different Linux distributions. It allows users to install applications in isolated environments, separating them from the host system for enhanced security and stability.
 
 ## 1. Initial Setup and Configuration
 
