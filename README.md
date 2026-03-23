@@ -28,5 +28,8 @@ This directory is dedicated to my journey toward becoming a **Red Hat Certified 
 ### **Lab 07:** [📦 Package Management & Integrity with DNF](DNF-Package-Management.md)
 -   **Focus:** Managing packages with `dnf`, repository configuration (ISO mounting), and package integrity verification.
 -   **Status:** Completed.
+### **Lab 08:** [📦 Application Sandboxing & Management with Flatpak](Flatpak-Package-Management.md)
+-   **Focus:** Deploying containerized applications using `flatpak`, managing remotes (Flathub), executing isolated processes, and enforcing granular sandbox security permissions.
+-   **Status:** Completed.
 ---
 **Environment:** Fedora (Host), Rocky Linux (Lab),RHEL (Lab),  Framework 13.
