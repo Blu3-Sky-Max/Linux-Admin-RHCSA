@@ -1,7 +1,9 @@
 # System Logging Management
 
 **Author:** Usman O. Olanlanrewaju (Blu3 Sky)
+
 **Date:** 2026/03/31
+
 **Focus:** rsyslog architecture, log file inspection, custom message injection with `logger`, log rotation, and systemd journal management with `journalctl`
 
 ---

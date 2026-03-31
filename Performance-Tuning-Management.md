@@ -1,7 +1,9 @@
 # Performance Tuning Management
 
 **Author:** Usman O. Olanlanrewaju (Blu3 Sky)
+
 **Date:** 2026/03/31
+
 **Focus:** System tuning with `tuned`, profile management via `tuned-adm`, and applying recommended profiles for workload optimization
 
 ---
