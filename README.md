@@ -43,3 +43,10 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 ### Lab 09: [⚙️ System Initialization & Management](./System-Initialization-Management.md)
 - **Focus:** systemd architecture, unit file hierarchy (`/usr/lib/systemd/system/` → `/etc/systemd/system/`), managing service lifecycles (`enable`, `disable`, `mask`, `unmask`), boot target switching, and safe configuration overrides via `systemctl edit`.
 - **Status:** Completed.
+### Lab 10: [📋 System Logging Management](./System-Logging-Management.md)
+- **Focus:** rsyslog architecture and config validation, log file inspection (`/var/log/`), custom message injection with `logger`, log rotation via `logrotate`, and systemd journal querying with `journalctl`.
+- **Status:** Completed.
+
+### Lab 11: [⚡ Performance Tuning Management](./Performance-Tuning-Management.md)
+- **Focus:** System tuning with `tuned`, profile management via `tuned-adm` (list, switch, recommend, off), and workload-optimized profile selection for bare metal, VM, and power-saving environments.
+- **Status:** Completed.
