@@ -2,6 +2,7 @@
 
 **Author:** Usman O. Olanlanrewaju (Blu3 Sky)
 **Date:** 2026/03/31
+
 **Focus:** systemd architecture, unit management, service lifecycle, boot targets, and configuration file hierarchy
 ## 1. systemd Architecture
 systemd is the init system used in RHEL 7+. The primary management tool is `systemctl`.
