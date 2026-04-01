@@ -85,7 +85,6 @@ Current active profile: virtual-guest
 ```
 ### 3.2 Profile files are stored at `/usr/lib/tuned/profiles/`: 
 ```bash 
-```bash
 $ ll /usr/lib/tuned/profiles/
 total 0
 drwxr-xr-x. 2 root root 24 Jan 27 12:06 accelerator-performance

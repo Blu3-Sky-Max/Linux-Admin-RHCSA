@@ -73,7 +73,10 @@ Mar 31 16:18:51 localhost systemd[1]: session-c33.scope: Deactivated successfull
 Mar 31 16:18:51 localhost systemd-logind[944]: Removed session c33.
 ```
 Best is to use `tail` to get the recent log for system activities.Use `tail -f` to follow a log in real time during troubleshooting.
+
+
 --- 
+
 ## 3. Custom Message Injection with `logger`
 `logger` writes entries directly into `/var/log/messages` (via rsyslog). It is useful for injecting markers during scripts or manual testing.
 
@@ -106,7 +109,9 @@ Mar 30 16:49:43 localhost gnome-shell[2448]: GNOME Shell started at Mon Mar 30 2
 Mar 30 17:14:52 localhost blu3sky[6561]: “This is blu3sky adding this marker on Mon Mar 30 05:14:52 PM EDT 2026”
 ```
 Piping into `logger` is useful in shell scripts to mark execution points in the system log without needing special logging libraries.
---- 
+
+---
+ 
 ## 4. Log Rotation
 Log rotation prevents `/var/log/` from filling up the disk. The `logrotate` utility is triggered daily by a systemd timer.
 
