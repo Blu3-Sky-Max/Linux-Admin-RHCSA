@@ -1,10 +1,13 @@
 # RHEL Package Management: Flatpak Repository Auditing
 
 **Author:** Usman O. Olanrewaju (Blu3 Sky)
+
 **Date:** 2026/03/22 
+
 **Focus:** Managing containerized desktop applications using `flatpak`, including remote repository configuration (Flathub), application lifecycle management, and granular sandbox permission control (`override`).
 
-
+**Modify:** 2026/04/10
+--- 
 
 Flatpak is an application sandboxing and distribution framework designed to provide secure, portable, and version-flexible software deployment across different Linux distributions. It allows users to install applications in isolated environments, separating them from the host system for enhanced security and stability.
 
@@ -138,6 +141,9 @@ Resetting Gedit
 ```bash 
 $ flatpak --reset override  org.gnome.gedit 
 ```
+
+--- 
+
 ## 4. Cleanup and Maintenance: 
 
 ### 4.1 Uninstalling an Application: 
