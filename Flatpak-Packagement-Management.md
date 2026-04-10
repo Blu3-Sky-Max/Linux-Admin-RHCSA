@@ -7,6 +7,7 @@
 **Focus:** Managing containerized desktop applications using `flatpak`, including remote repository configuration (Flathub), application lifecycle management, and granular sandbox permission control (`override`).
 
 **Modify:** 2026/04/10
+
 --- 
 
 Flatpak is an application sandboxing and distribution framework designed to provide secure, portable, and version-flexible software deployment across different Linux distributions. It allows users to install applications in isolated environments, separating them from the host system for enhanced security and stability.
