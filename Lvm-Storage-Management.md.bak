@@ -657,7 +657,7 @@ $ sudo vgremove Usmanlvm -y
   Logical volume "Blue-Sky" successfully removed.
   Volume group "Usmanlvm" successfully removed
 ``` 
-#### 12.2.1 Viewing Changes
+#### 12.2.1 Veiwing Changes
 ```bash
 $ sudo vgs
   VG           #PV #LV #SN Attr   VSize   VFree  
