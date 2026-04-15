@@ -46,8 +46,8 @@ A partition table tells the OS how the disk is divided. There are two formats:
 LVM sits between raw disks and the filesystem. It does not create storage — it makes existing storage flexible to manage.That all it does 
 
 ```
-Physical Disks  -->   Physical Volumes (PV)  -->  Volume Group (VG)  -->   Logical Volumes (LV)
-   (real space)       (LVM labels)              (storage pool/container)        (usable slices)
+HDD/SSD(/dev/sda, /dev/sdb) -->  Physical Volumes (PV)  -->  Volume Group (VG)  -->   Logical Volumes (LV)
+(Physical Disks)                        (LVM labels)       (storage pool/container)        (usable slices)
 ``` 
 
 **The key insight:** A VG is just a pool. Add more PVs(Physical Volumes) to grow the pool. Carve LVs(Logical Volumes)  from that pool. The total space is always bounded by real physical disks.
@@ -580,7 +580,7 @@ $ sudo lvresize -L +200 /dev/Usmanlvm/lvol0; sudo lvresize -L +200 /dev/Usmanlvm
   Logical volume Usmanlvm/Blue-lv successfully resized.
 ```
 
-**PE rounding explained:** With a 9 MiB PE size, +200 MiB becomes +207 MiB (23 × 9). The requested size is always rounded up to the next full PE boundary — LVM will never allocate a partial extent; the PE i set at the vg for vg name is 9 and that the unit allocated to each block so mutiply 9 *23  same as he second one 
+> **PE rounding explained:** With a 9 MiB PE size, +200 MiB becomes +207 MiB (23 × 9). The requested size is always rounded up to the next full PE boundary — LVM will never allocate a partial extent; the PE i set at the vg for vg name is 9 and that the unit allocated to each block so mutiply 9 *23  same as he second one 
 
 #### 11.1.1  Veiwing increament 
 ```bash
