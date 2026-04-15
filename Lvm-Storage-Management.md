@@ -580,7 +580,7 @@ $ sudo lvresize -L +200 /dev/Usmanlvm/lvol0; sudo lvresize -L +200 /dev/Usmanlvm
   Logical volume Usmanlvm/Blue-lv successfully resized.
 ```
 
-> **PE rounding explained:** With a 9 MiB PE size, +200 MiB becomes +207 MiB (23 × 9). The requested size is always rounded up to the next full PE boundary — LVM will never allocate a partial extent; the PE i set at the vg for vg name is 9 and that the unit allocated to each block so mutiply 9 *23  same as he second one 
+> **PE rounding explained:** With a 9 MiB PE size, +200 MiB becomes +207 MiB (23 × 9). The requested size is always rounded up to the next full PE boundary — LVM will never allocate a partial extent; the PE i set at the vgcreate is 9 and that the unit allocated to each block so mutiply 9 *23  same as the second one 
 
 #### 11.1.1  Viewing increment 
 ```bash
