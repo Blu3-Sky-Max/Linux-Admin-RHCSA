@@ -50,3 +50,6 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 ### Lab 11: [⚡ Performance Tuning Management](./Performance-Tuning-Management.md)
 - **Focus:** System tuning with `tuned`, profile management via `tuned-adm` (list, switch, recommend, off), and workload-optimized profile selection for bare metal, VM, and power-saving environments.
 - **Status:** Completed.
+### Lab 12: [💾 LVM Storage Management](./LVM-Storage-Management.md)
+- **Focus:** Partition tables (MBR/GPT), Physical Volumes, Volume Groups, Logical Volume lifecycle (create, extend, resize, rename, teardown), filesystem formatting and persistent mounts.
+- **Status:** 🚧 In Progress — formatting section pending.
