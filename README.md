@@ -52,4 +52,4 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 - **Status:** Completed.
 ### Lab 12: [💾 LVM Storage Management](./Lvm-Storage-Management.md)
 - **Focus:** Partition tables (MBR/GPT), Physical Volumes, Volume Groups, Logical Volume lifecycle (create, extend, resize, rename, teardown), filesystem formatting and persistent mounts.
-- **Status:** 🚧 In Progress — formatting section pending.
+- - **Status:** Completed.

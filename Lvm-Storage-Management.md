@@ -6,6 +6,8 @@
 
 **Focus:** Partition tables, Physical Volumes, Volume Groups, Logical Volumes — full lifecycle
 
+**Modify:2026/04/23 
+
 ---
 
 ## Table of Contents
@@ -21,8 +23,9 @@
 9. [Extending the Storage Pool](#9-extending-the-storage-pool)
 10. [Renaming and Reorganising Volumes](#11-renaming-and-reorganising-volumes)
 11. [Resizing Logical Volumes](#10-resizing-logical-volumes)
-12. [Teardown — Removing LVM Objects](#12-teardown--removing-lvm-objects)
-13. [Key Concepts and Common Mistakes](#13-key-concepts-and-common-mistakes)
+12. [Formatting Logical Volumes](#12-formatting-logical-volumes) 
+13. [Teardown — Removing LVM Objects](#12-teardown--removing-lvm-objects)
+14. [Key Concepts and Common Mistakes](#13-key-concepts-and-common-mistakes)
 
 ---
 
@@ -636,35 +639,162 @@ $ sudo vgs ; sudo pvs
   /dev/vda3  rhel         lvm2 a--  <19.00g      0 
 ```
 #### 11.4 Creating new LV to Second VG
+Using `-l` (lowercase) to allocate by extent count rather than size.
 ```bash
 $ sudo lvcreate -l 10  -n Blue-Sky-Max-Workacholic Blue-Sky-Max
   Logical volume "Blue-Sky-Max-Workacholic" created.
 ```
-**Note:** `-l 10` allocates 10 extents. With a PE size of 5 MiB: 5 × 10 = 50 MiB total.
+> **`-l` vs `-L`:** `-l 10` allocates 10 extents. With a PE size of 5 MiB: 10 × 5 = 50 MiB total. `-L 50` would produce the same result here. Use `-l` when thinking in extents, `-L` when thinking in bytes.
 
-## 12. Teardown — Removing LVM Objects
-Always remove in reverse order: **LV -->  VG -->  PV --> Wipe disk**.
+## 12. Formatting Logical Volumes 
+LVs behave like raw block devices. Before they can hold data, they must be formatted with a filesystem, mounted, and optionally added to `/etc/fstab` for persistent mounting.
 
-### 12.1 Remove all LVs 
+### 12.1 Format with ext4, XFS, and VFAT
+```bash
+$ sudo mkfs.ext4 /dev/Blue-Sky-Max/Blue-Sky-Max-Workacholic ; sudo mkfs.xfs -f /dev/Usmanlvm/Blue-lv; sudo mkfs.vfat /dev/Usmanlvm/Blue-Sky  
+mke2fs 1.47.1 (20-May-2024)
+Creating filesystem with 51200 1k blocks and 12824 inodes
+Filesystem UUID: de6e6ebc-e9ba-43dd-b6bd-b66b6e5a739d
+Superblock backups stored on blocks: 
+	8193, 24577, 40961
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Creating journal (4096 blocks): done
+Writing superblocks and filesystem accounting information: done
+
+meta-data=/dev/Usmanlvm/Blue-lv  isize=512    agcount=4, agsize=63360 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=1, sparse=1, rmapbt=1
+         =                       reflink=1    bigtime=1 inobtcount=1 nrext64=1
+         =                       exchange=0  
+data     =                       bsize=4096   blocks=253440, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0, ftype=1, parent=0
+log      =internal log           bsize=4096   blocks=16384, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+mkfs.fat 4.2 (2021-01-31)
+```
+> **RHEL 10 — XFS minimum size requirement:** `mkfs.xfs` enforces a hard minimum of **300 MB** on RHEL 10. Attempting to format a smaller LV or partition will fail with `Filesystem must be larger than 300MB`. This is not documented in the Gor Ghori textbook, which assumes smaller lab partitions. Always size XFS targets at 400 MB or larger to have margin after PE rounding.
+
+### 12.2 Create mount points
+```bash 
+$ sudo mkdir /usman-ext4 ~/usman-xfs /usman-vfat
+[sudo] password for blu3sky: 
+``` 
+### 12.3 Mount manually
+
+```bash 
+$ sudo mount /dev/Usmanlvm/Blue-lv ~/usman-xfs; sudo mount /dev/Usmanlvm/Blue-Sky /usman-vfat/; sudo mount /dev/Blue-Sky-Max/Blue-Sky-Max-Workacholic /usman-ext4 
+```
+### 12.3.1 Verify mounts 
+```bash 
+$ lsblk /dev/sda
+NAME                                           MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+sda                                              8:0    1 58.6G  0 disk 
+├─sda1                                           8:1    1  476M  0 part 
+│ ├─Usmanlvm-Blue--Sky                         253:3    0  351M  0 lvm  /usman-vfat
+│ │                                                                     /usman-vfat
+│ └─Usmanlvm-Blue--lv                          253:4    0  990M  0 lvm  /home/blu3sky/usman-xfs
+├─sda2                                           8:2    1  476M  0 part 
+│ └─Usmanlvm-Blue--lv                          253:4    0  990M  0 lvm  /home/blu3sky/usman-xfs
+├─sda3                                           8:3    1  476M  0 part 
+│ └─Usmanlvm-Blue--lv                          253:4    0  990M  0 lvm  /home/blu3sky/usman-xfs
+└─sda4                                           8:4    1  476M  0 part 
+  └─Blue--Sky--Max-Blue--Sky--Max--Workacholic 253:2    0   50M  0 lvm  /usman-ext4
+                                                                        /usman-ext4
+``` 
+### 12.4 Persist mounts — edit /etc/fstab
+
+Both device paths and UUIDs are valid in fstab. UUIDs are preferred in production because they survive devicerenaming (e.g. sda -->  sdb after a reboot). For LVM volumes, the device path is stable by name, so either works. The `nofail` option prevents a boot hang if the device is unavailable.
+
+```bash
+/dev/Usmanlvm/Blue-Sky                         /usman-vfat                vfat      defaults,nofail     0 0
+/dev/Usmanlvm/Blue-lv                          /home/blu3sky/usman-xfs    xfs       defaults,nofail     0 0
+UUID=de6e6ebc-e9ba-43dd-b6bd-b66b6e5a739d       /usman-ext4               ext4       defaults,nofail    0 0
+
+```
+### 12.5 Unmount all three filesystems
+
+```bash
+$ sudo umount /dev/Usmanlvm/Blue-lv ; sudo umount /dev/Usmanlvm/Blue-Sky; sudo umount /dev/Blue-Sky-Max/Blue-Sky-Max-Workacholic
+
+```
+#### 12.5.1 Verify unmounted 
+```bash
+$ lsblk /dev/sda 
+NAME                                           MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+sda                                              8:0    1 58.6G  0 disk 
+├─sda1                                           8:1    1  476M  0 part 
+│ ├─Usmanlvm-Blue--Sky                         253:3    0  351M  0 lvm  
+│ └─Usmanlvm-Blue--lv                          253:4    0  990M  0 lvm  
+├─sda2                                           8:2    1  476M  0 part 
+│ └─Usmanlvm-Blue--lv                          253:4    0  990M  0 lvm  
+├─sda3                                           8:3    1  476M  0 part 
+│ └─Usmanlvm-Blue--lv                          253:4    0  990M  0 lvm  
+└─sda4                                           8:4    1  476M  0 part 
+  └─Blue--Sky--Max-Blue--Sky--Max--Workacholic 253:2    0   50M  0 lvm  
+
+``` 
+
+### 12.6 Mount via fstab and verify persistence
+```bash 
+
+$ sudo mount -a 
+[sudo] password for blu3sky: 
+mount: (hint) your fstab has been modified, but systemd still uses
+       the old version; use 'systemctl daemon-reload' to reload.
+mount: /mnt: fsconfig system call failed: /dev/sr0: Can't open blockdev.
+       dmesg(1) may have more information after failed mount system call.
+```
+
+> The `sr0` error is expected — it is the optical drive entry in fstab with no disc inserted. It does not affect the LV mounts. Run `systemctl daemon-reload` to sync systemd with the updated fstab if needed.
+
+#### 12.6.1 Verify persistent mounts
+```bash 
+$ lsblk /dev/sda 
+NAME                                           MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+sda                                              8:0    1 58.6G  0 disk 
+├─sda1                                           8:1    1  476M  0 part 
+│ ├─Usmanlvm-Blue--Sky                         253:3    0  351M  0 lvm  /usman-vfat
+│ └─Usmanlvm-Blue--lv                          253:4    0  990M  0 lvm  /home/blu3sky/usman-xfs
+├─sda2                                           8:2    1  476M  0 part 
+│ └─Usmanlvm-Blue--lv                          253:4    0  990M  0 lvm  /home/blu3sky/usman-xfs
+├─sda3                                           8:3    1  476M  0 part 
+│ └─Usmanlvm-Blue--lv                          253:4    0  990M  0 lvm  /home/blu3sky/usman-xfs
+└─sda4                                           8:4    1  476M  0 part 
+  └─Blue--Sky--Max-Blue--Sky--Max--Workacholic 253:2    0   50M  0 lvm  /usman-ext4
+```
+
+## 13. Teardown — Removing LVM Objects
+Always remove in reverse order: **UMOUNT --> LV -->  VG -->  PV --> Wipe disk**.
+Skipping steps or removing out of order will leave stale LVM metadata on disk. That metadata persists across reboots — the kernel reads it on the next boot and resurfaces ghost VGs. Always run `wipefs -a` as the final step.
+
+### 13.1 UNMOUNT
+```bash
+$ sudo umount /dev/Usmanlvm/Blue-lv ; sudo umount /dev/Usmanlvm/Blue-Sky; sudo umount /dev/Blue-Sky-Max/Blue-Sky-Max-Workacholic
+```
+### 13.2 Remove all LVs 
 
 ``` bash
 $ sudo lvremove /dev/Usmanlvm/Blue-lv -y
   Logical volume "Blue-lv" successfully removed.
 ``` 
-### 12.2 Removing a VG (vgremove -y handles this automatically)
+### 13.3 Removing a VG (vgremove -y handles this automatically)
 ```bash
 $ sudo vgremove Usmanlvm -y
   Logical volume "Blue-Sky" successfully removed.
   Volume group "Usmanlvm" successfully removed
 ``` 
-#### 12.2.1 Viewing Changes
+#### 13.3.1 Viewing Changes
 ```bash
 $ sudo vgs
   VG           #PV #LV #SN Attr   VSize   VFree  
   Blue-Sky-Max   2   1   0 wz--n- 950.00m 900.00m
   rhel           1   2   0 wz--n- <19.00g      0
 ```
-### 12.3  Remove PV labels
+### 13.4  Remove PV labels
 
 PVs must be detached from its VG with `vgreduce` or `vgremove` before `pvremove` can wipe it. You cannot remove a PV that is still a member of a VG.
 ```bash
@@ -673,11 +803,15 @@ $ sudo pvremove /dev/sda1 /dev/sda2
   Labels on physical volume "/dev/sda2" successfully wiped.
 ```
 
-### 12.4 Wipe file-system signatures from all disks used in the lab
+### 13.5 Wipe file-system signatures from all disks used in the lab
 ```bash
 $ sudo wipefs -a /dev/sda2 /dev/sda2
+
 ```
-### 12.5  Confirm clean state
+
+> **Always run `wipefs -a` after teardown.** LVM writes metadata directly to the partition. Without this step, the signatures survive and the kernel will re-import the old VGs the next time the disk is inserted — surfacing volume groups and LVs that no longer exist. This is especially important when reusing the same disk across multiple labs.
+
+### 13.6  Confirm clean state
 ```bash
 $ sudo pvs; sudo vgs; sudo lvs
   PV         VG   Fmt  Attr PSize   PFree
@@ -686,7 +820,7 @@ $ sudo pvs; sudo vgs; sudo lvs
   VG   #PV #LV #SN Attr   VSize   VFree
   rhel   1   2   0 wz--n- <19.00g    0
 ```
-## 13. Key Concepts and Common Mistakes
+## 14. Key Concepts and Common Mistakes
 
 ### LVM does not create free space
 
@@ -703,6 +837,17 @@ If the target disk has no PV label yet, `vgcreate` will initialise it automatica
 ### + vs absolute sizing in lvresize
 
 `-L +200` adds 200 MiB to the current size. `-L 300` sets the size to exactly 300 MiB (rounded to PE boundary). Confusing these two will give unexpected results.
+
+
+### XFS has a 300 MB minimum on RHEL 10
+
+`mkfs.xfs` enforces a hard minimum filesystem size of 300 MB on RHEL 10. This is not negotiable and cannot be overridden with a flag. Always provision XFS targets at 400 MB or more.
+
+### Stale LVM metadata persists across reboots
+
+LVM metadata is written directly to the PV, not held in memory. If you do not run `wipefs -a` after teardown, the kernel will re-import old VGs on the next boot or disk insertion. Always wipe as the final teardown step.
+
+--- 
 
 ### Command quick-reference
 
