@@ -53,3 +53,6 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 ### Lab 12: [💾 LVM Storage Management](./Lvm-Storage-Management.md)
 - **Focus:** Partition tables (MBR/GPT), Physical Volumes, Volume Groups, Logical Volume lifecycle (create, extend, resize, rename, teardown), filesystem formatting and persistent mounts.
 - **Status:** Completed.
+### Lab 13: 💾 [Swap Space Management](./Swap-Management.md)
+- **Focus:** Swap creation on partitions and LVM volumes, labels, priority, persistent activation via fstab, teardown, and partition labeling with `xfs_admin`, `mke2fs`, and `tune2fs`.
+- **Status:** ✅ Completed.
