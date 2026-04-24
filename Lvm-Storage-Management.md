@@ -1,12 +1,12 @@
-# Logical Volume Management Storage Management 
+# L.V.M Storage Management 
 
-**Author:** Usman O. Olanlanrewaju (Blu3 Sky)
+**Author:** Usman O. Olanrewaju (Blu3 Sky)
 
 **Date:** 2026/04/14
 
 **Focus:** Partition tables, Physical Volumes, Volume Groups, Logical Volumes — full lifecycle
 
-**Modify:2026/04/23 
+**Modify:** 2026/04/23 
 
 ---
 
