@@ -27,13 +27,13 @@ The Linux boot process runs through four sequential phases. Each phase hands con
 ```bash
 POWER ON  --> BIOS/UEFI --> MBR/GBT --> GRUB/GRUB2 --> KERNEL --> SYSTEMD --> LOGIN
 ```
-### 1.1 Firmware Phase — BIOS & UEFI
+### 1.1 Firmware Phase: BIOS & UEFI
 
 **BIOS** (Basic Input and Output System) is the legacy firmware interface. **UEFI** (Unified Extensible Firmware Interface) is the modern, architecture-independent replacement. Both run a **Power-On Self Test (POST)** to verify that hardware is functional before handing off to the bootloader.
 
 To enter the firmware utility, press `F2` or `Del` during system startup (key varies by manufacturer).
 
-### 1.2 Bootloader Phase — GRUB2
+### 1.2 Bootloader Phase;  GRUB2
 
 **GRUB2** (Grand Unified Bootloader version 2) is the bootloader. Its job is to locate the Linux kernel in the `/boot` filesystem, load it into memory, and transfer control. Loading each piece of code into memory piece by piece is called **bootstrapping**.
 
@@ -43,7 +43,7 @@ Main configuration file: `/boot/grub2/grub.cfg`
 
 The kernel is the central program of the operating system — it provides access to hardware and system services. After receiving control from GRUB2, the kernel loads the **initramfs** (initial RAM filesystem) image from `/boot`, executes `/init` inside it, and loads all required driver modules. Once drivers are loaded the kernel mounts the real root filesystem and passes control to systemd.
 
-### 1.4 Initialization Phase — systemd
+### 1.4 Initialization Phase; systemd
 
 The final phase. systemd takes control from the kernel and completes system startup. It starts all enabled userspace services and network services and brings the system to the configured **boot target**. A boot target is an operational state defined by a collection of systemd units.
 
@@ -197,7 +197,7 @@ Press `Ctrl+X` to boot. The system drops to a root shell with the filesystem mou
 
 
 
-## 6. Recovery — Lost Root Password
+## 6. Recovery:  Lost Root Password
 
 Use this procedure when the root password is unknown or a broken `/etc/fstab` is preventing boot.
 
