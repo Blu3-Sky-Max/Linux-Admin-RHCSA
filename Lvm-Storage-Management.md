@@ -767,6 +767,25 @@ sda                                              8:0    1 58.6G  0 disk
   └─Blue--Sky--Max-Blue--Sky--Max--Workacholic 253:2    0   50M  0 lvm  /usman-ext4
 ```
 
+### 12.7 Increasing a mounted logical volume 
+
+```bash
+$ sudo lvextend -r -L +250  /dev/Blue-Sky-Max/Blue-Sky-Max-Workacholic 
+  File system ext4 found on Blue-Sky-Max/Blue-Sky-Max-Workacholic mounted at /usman-ext4.
+  Size of logical volume Blue-Sky-Max/Blue-Sky-Max-Workacholic changed from 50.00 MiB (10 extents) to 300.00 MiB (60 extents).
+  Extending file system ext4 to 300.00 MiB (314572800 bytes) on Blue-Sky-Max/Blue-Sky-Max-Workacholic...
+resize2fs /dev/Blue-Sky-Max/Blue-Sky-Max-Workacholic
+resize2fs 1.47.1 (20-May-2024)
+Filesystem at /dev/Blue-Sky-Max/Blue-Sky-Max-Workacholic is mounted on /usman-ext4; on-line resizing required
+old_desc_blocks = 1, new_desc_blocks = 3
+The filesystem on /dev/Blue-Sky-Max/Blue-Sky-Max-Workacholic is now 307200 (1k) blocks long.
+
+resize2fs done
+  Extended file system ext4 on Blue-Sky-Max/Blue-Sky-Max-Workacholic.
+  Logical volume Blue-Sky-Max/Blue-Sky-Max-Workacholic successfully resized.
+```
+> Note: -r resizes the filesystem together with the LV in one command. Without -r you would need to run resize2fs manually after lvextend. Only works with ext4/ext2 — XFS uses xfs_growfs instead.
+ 
 ## 13. Teardown — Removing LVM Objects
 Always remove in reverse order: **UMOUNT --> LV -->  VG -->  PV --> Wipe disk**.
 Skipping steps or removing out of order will leave stale LVM metadata on disk. That metadata persists across reboots — the kernel reads it on the next boot and resurfaces ghost VGs. Always run `wipefs -a` as the final step.
