@@ -55,7 +55,7 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 - **Status:** Completed.
 ### Lab 13: 💾 [Swap Space Management](./Swap-Management.md)
 - **Focus:** Swap creation on partitions and LVM volumes, labels, priority, persistent activation via fstab, teardown, and partition labeling with `xfs_admin`, `mke2fs`, and `tune2fs`.
-- **Status:** ✅ Completed.
+- **Status:** Completed.
 ### Lab 14: 🥾 [Boot Process, GRUB2, and System Recovery](./Boot-Process-GRUB2-Management.md)
 - **Focus:** Linux boot phases (firmware → bootloader → kernel → systemd), GRUB2 configuration and interaction, boot targets, root password recovery, and broken fstab recovery via `init=/bin/bash`.
-- **Status:** ✅ Completed.
+- **Status:**Completed.
