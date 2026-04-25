@@ -58,4 +58,4 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 - **Status:** Completed.
 ### Lab 14: 🥾 [Boot Process, GRUB2, and System Recovery](./Boot-Process-GRUB2-Management.md)
 - **Focus:** Linux boot phases (firmware → bootloader → kernel → systemd), GRUB2 configuration and interaction, boot targets, root password recovery, and broken fstab recovery via `init=/bin/bash`.
-- **Status:**Completed.
+- **Status:** Completed.
