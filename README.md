@@ -59,7 +59,9 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 ### Lab 14: 🥾 [Boot Process, GRUB2, and System Recovery](./Boot-Process-GRUB2-Management.md)
 - **Focus:** Linux boot phases (firmware → bootloader → kernel → systemd), GRUB2 configuration and interaction, boot targets, root password recovery, and broken fstab recovery via `init=/bin/bash`.
 - **Status:** Completed.
-
+### Lab 15: ⚙️ [Kernel Management](./Kernel-Management.md)
+- **Focus:** Kernel package structure, /boot and /proc filesystems, kernel module inspection, installing kernels on RHEL 10 via `rpm` and Fedora 44 via `dnf`, and version verification.
+- **Status:** Completed.
 
 
 
