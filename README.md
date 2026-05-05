@@ -24,7 +24,7 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 - **Focus:** User lifecycle management (`useradd`, `usermod`, `userdel`), group operations (`groupadd`, `groupmod`), and granular file permission manipulation (`chown`, `chmod` octal/symbolic).
 - **Status:** Completed.
 
-### Lab 05: [⏰ Job Scheduling Management](./job-scheduling.md)
+### Lab 05: [⏰ Job Scheduling Management](./Job-Scheduling-Management.md)
 - **Focus:** Implementing and managing one-time jobs (`at`) and recurring tasks (`cron`), including user access control (`/etc/at.allow`) and log locations.
 - **Status:** Completed.
 
