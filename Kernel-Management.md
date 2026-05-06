@@ -337,7 +337,7 @@ $ uname -r
 
 Source: [https://koji.fedoraproject.org/koji/packageinfo?packageID=8](https://koji.fedoraproject.org/koji/packageinfo?packageID=8)
 
-![Fedora Koji download page](./fedorarhel.jpeg)
+![Fedora Koji download page](Images-Videos/fedorarhel.jpeg)
 
 Download the following packages for the target version:
 
@@ -378,7 +378,7 @@ Adding boot menu entry for UEFI Firmware Settings ...
 done
 ```
 
-![Kernel installation progress](./kernel44usman.jpeg)
+![Kernel installation progress](Images-Videos/kernel44usman.jpeg)
 
 > GRUB2 configuration is regenerated automatically after kernel installation. The new kernel appears as the first entry in the boot menu.
 
@@ -518,7 +518,7 @@ Warning: skipped OpenPGP checks for 8 packages from repository: @commandline
 Complete!
 ```
 
-![Kernel 7.0.3 installation](./Installing-fc-7.0.3-.jpeg)
+![Kernel 7.0.3 installation](Images-Videos/Installing-fc-7.0.3-.jpeg)
 
 ### 9.2 Confirm new kernel in GRUB environment
 
