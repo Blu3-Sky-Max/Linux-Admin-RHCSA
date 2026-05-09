@@ -1,10 +1,12 @@
 # 📦 RHEL Package Management: DNF Repository Auditing
 
 **Author:** Usman O. Olanrewaju (Blu3 Sky)  
-**Date:** 2026/03/03  
+
+**Date:** 2026/03/03 
+ 
 **Focus:** Advanced CLI package management on RHEL/Fedora, including repository configuration, package integrity verification, and DNF group management.
 
-**modify:** 2026/03/21 
+**modify:** 2026/04/09 
 
 Danified yellowdog update modified (DNF) package management:
 A DNF repository (yum repository or simply a repo) is a digital library for storing software packages and metadata.
@@ -13,13 +15,20 @@ A DNF repository (yum repository or simply a repo) is a digital library for stor
 
 Using the local ISO image to configure repository sources:
 
-### 1.1 Custom Repository Snippet (BaseOS):
-```bash 
-[Base OS]
-name:Base Operating System by Blu3-sky
-baseurl:///mnt/BaseOS
-gpgcheck:0 # disable pretty good privacy 
-enabled=1 #enable 
+### 1.1 Custom Repository Snippet (BaseOS) & (AppStream):
+```bash
+
+[BaseOS]      #there should not be a space in the id or else it will says 'bad id' 
+name=Base OS Software 
+baseurl=//mnt/BaseOS 
+enabled=1 # enable
+gpgcheck=0  # disable pretty good privacy
+
+[AppStream]
+name=Application Software 
+baseurl=//mnt/AppStream
+enabled=1 
+gpgcheck=0  
 ```
 ### 1.2 Checking Repository Status: 
 ```bash 
