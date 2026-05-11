@@ -62,7 +62,9 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 ### Lab 15: ⚙️ [Kernel Management](./Kernel-Management.md)
 - **Focus:** Kernel package structure, /boot and /proc filesystems, kernel module inspection, installing kernels on RHEL 10 via `rpm` and Fedora 44 via `dnf`, and version verification.
 - **Status:** Completed.
-
+### Lab 16: 🌐 [Network File System Management](./Network-File-System-Management.md)
+- **Focus:** NFS server/client setup, exports, firewall configuration, SSHFS client-side mounting, AutoFS direct and indirect maps, wildcard mounting, `/misc` built-in map, and home directory automounting.
+- **Status:** Completed.
 
 
 
