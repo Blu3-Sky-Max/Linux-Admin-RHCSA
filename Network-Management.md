@@ -98,7 +98,7 @@ Usman.Sky.sittig
 
 ## 3. Protocols, Ports, and Layer Fundamentals
  
-A protocol is a set of rules governing the exchange of data between two network nodes. These rules include how data is formatted, coded, and controlled. protocol is an agreement bewteen two community on how communication is to proceeds 
+A protocol is a set of rules governing the exchange of data between two network nodes. These rules include how data is formatted, coded, and controlled. protocol is an agreement between two community on how communication is to proceeds 
 
 ### 3.1 Protocol list — /etc/protocols 
 ```bash 
@@ -380,7 +380,7 @@ NetworkManager is the system service that manages network connections on RHEL an
 
 > Run `man nm-settings` for a full description of all available connection profile properties.
 
-### 6.1 Intial  connection status 
+### 6.1 Initial  connection status 
 ```bash
 $ nmcli connection show
 NAME    UUID                                  TYPE      DEVICE 
@@ -396,7 +396,7 @@ enp0s3  ethernet  connected               enp0s3
 lo      loopback  connected (externally)  lo         
 enp0s8  ethernet  disconnected            --         # --> this is our own and not yet connected 
 ```
-### 6.3 Check Configuration of Intial connected interface 
+### 6.3 Check Configuration of Initial connected interface 
 ```bash
 $ sudo cat /etc/NetworkManager/system-connections/enp0s3.nmconnection 
 [sudo] password for blue: 
