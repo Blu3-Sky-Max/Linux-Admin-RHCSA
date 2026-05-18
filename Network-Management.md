@@ -2,9 +2,9 @@
 
 **Author:** Usman O. Olanrewaju (Blu3 Sky)
 
-**Date:** 2026-05-14
+**Created:** 2026-05-14
 
-**Modified:** 2026-05-17
+**Modified:** 2026-05-17  
 
 **Focus:** Hostname management, network protocols, IPv4/IPv6, IP addressing (classful, subnetting, CIDR), NetworkManager tools, connection profiles, host table, and two-machine local networking
 
@@ -324,7 +324,7 @@ CIDR notation expresses an IP address and its subnet mask compactly using a trai
 - Check **Enable Network Adapter**
 - Set **Attached to:** Internal Network
 
-![VirtualBox network adapter setup](vmsittingusman.png)
+![VirtualBox network adapter setup](Image-Videos/vmsittingusman.png)
 
 
 ### 4.2 Verify the new interface appeared
