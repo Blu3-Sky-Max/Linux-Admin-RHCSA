@@ -324,7 +324,7 @@ CIDR notation expresses an IP address and its subnet mask compactly using a trai
 - Check **Enable Network Adapter**
 - Set **Attached to:** Internal Network
 
-![VirtualBox network adapter setup](Image-Videos/vmsittingusman.png)
+![VirtualBox network adapter setup](Images-Videos/vmsittingusman.png)
 
 
 ### 4.2 Verify the new interface appeared
