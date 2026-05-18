@@ -65,6 +65,9 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 ### Lab 16: 🌐 [Network File System Management](./Network-File-System-Management.md)
 - **Focus:** NFS server/client setup, exports, firewall configuration, SSHFS client-side mounting, AutoFS direct and indirect maps, wildcard mounting, `/misc` built-in map, and home directory automounting.
 - **Status:** Completed.
+### Lab 17: 🌐 [Network Management](./Network-Management.md)
+- **Focus:** Hostname management, protocols and ports, IPv4/IPv6, classful addressing, subnetting and subnet masks, CIDR notation, NetworkManager connection profiles, two-machine local networking via host table, and SFTP connectivity.
+- **Status:** Completed.
 
 
 
