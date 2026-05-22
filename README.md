@@ -12,8 +12,8 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 - **Focus:** Partitioning disks with `parted`, file system creation, and persistent mounting via `/etc/fstab`.
 - **Status:** Completed.
 
-### Lab 02: [🕐 Time Zone & NTP Configuration](./Time-Configuration.md)
-- **Focus:** Configuring the system time zone, verifying settings with `timedatectl`, and understanding NTP synchronization.
+### Lab 02: 🕰️ [DNS Resolution & Time Synchronization Management](./Time-Configuration.md)
+- **Focus:** DNS name space, resolver configuration (`/etc/resolv.conf`, `/etc/nsswitch.conf`), name resolution tools (`dig`, `host`, `nslookup`, `getent`), NTP fundamentals, Chrony configuration, stratum levels, and system time management via `timedatectl`.
 - **Status:** Completed.
 
 ### Lab 03: [🔐 Password Policy Management](./Password-Policy-Management.md)
