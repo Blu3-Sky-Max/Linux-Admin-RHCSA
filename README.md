@@ -68,8 +68,9 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 ### Lab 17: 🌐 [Network Management](./Network-Management.md)
 - **Focus:** Hostname management, protocols and ports, IPv4/IPv6, classful addressing, subnetting and subnet masks, CIDR notation, NetworkManager connection profiles, two-machine local networking via host table, and SFTP connectivity.
 - **Status:** Completed.
-
-
+### Lab 18: 🔐 [OpenSSH Service Management](./SSH-Management.md)
+- **Focus:** SSH service configuration, key-based authentication, SFTP, and PermitRootLogin control
+- **Status:** Completed.
 
 
 ---
