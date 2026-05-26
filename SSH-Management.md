@@ -2,11 +2,14 @@
 
 **Author:** Usman O. Olanrewaju (Blu3 Sky)
 
-**Date:** 2026-05-25
+**Date:** 2026/05/25
 
-**Focus:** OpenSSH service configuration, key-based authentication, SFTP, and PermitRootLogin control
+**Environment:** Fedora (Host), RHEL (Lab), Framework 13
+
+**Focus:** OpenSSH architecture, server and client configuration, key-based authentication, SFTP file transfer, multi-user key distribution, authorized_keys permission repair, and PermitRootLogin control
 
 ---
+
 
 ## Table of Contents
 
@@ -600,9 +603,9 @@ The key's randomart image is:
 |           ...==.|
 +----[SHA256]-----+
 ```
-> `-N ""` sets an empty passphrase, enabling fully automated passwordless login. In production, a passphrase should be set to protect the private key on disk.
+> `-N ""` sets an empty passphrase, enabling fully automated passwordless login. In production, always set a passphrase to protect the private key if the file is ever compromised.
  
-### 9.2 Distribute the public key to the server
+### 9.2 Distribute the public key to the server - blu3sky 
 ```bash
 $ ssh-copy-id blu3sky@192.168.122.88
 /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: ssh-add -L
@@ -671,7 +674,7 @@ logout
 Connection to 192.168.122.88 closed.
 ```
 
-### 9.8 Log into other users - without distributing keys 
+### 9.8 Verify other users still require a password before key distribution
 ```bash
 $ ssh usman12@192.168.122.88  
 usman12@192.168.122.88's password: 
@@ -679,8 +682,10 @@ usman12@192.168.122.88's password:
 $ ssh root@192.168.122.88  
 root@192.168.122.88's password: 
 ```
+> Key-based authentication is per-user. Each user's public key must be individually distributed to that user's `~/.ssh/authorized_keys` on the server.
 
-### 9.9 Distribute to additional users
+### 9.9 Distribute the key to usman12
+
 ```bash
 $ ssh-copy-id usman12@192.168.122.88  
 /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: ssh-add -L
@@ -693,7 +698,8 @@ Number of key(s) added: 1
 Now try logging into the machine, with: "ssh 'usman12@192.168.122.88'"
 and check to make sure that only the key(s) you wanted were added.
 ```
-### 9.10 Verify passwordless login
+### 9.10 Verify passwordless login — usman12
+
 ```bash
 $ ssh usman12@192.168.122.88  
 Register this system with Red Hat Lightspeed: rhc connect
@@ -717,7 +723,7 @@ $ exit
 logout
 Connection to 192.168.122.88 closed.
 ``` 
-### 9.12 Distribute to additional root
+### 9.12 Distribute the key to root
 
 ```bash 
 ~$ ssh-copy-id root@192.168.122.88  
@@ -757,6 +763,7 @@ root@server40:~#
 logout
 Connection to 192.168.122.88 closed.
 ``` 
+> `known_hosts` stores the server's public keys indexed by hostname and IP. Multiple key types per host are normal — SSH stores one entry per supported algorithm. If you add the server to `/etc/hosts` with a hostname alias, SSH will store an additional entry for that alias.
 
 ## 10. Troubleshooting — authorized_keys Permission Repair
 
@@ -772,7 +779,7 @@ blu3sky@192.168.122.88's password:
 ```bash
 $ ll
 total 12
--rwxrwxrwx. 1 blu3sky 2000  105 May 25 07:35 authorized_keys  # --> the authrozited key has been tempered
+-rwxrwxrwx. 1 blu3sky 2000  105 May 25 07:35 authorized_keys  # --> world-writable — SSH rejects this
 -rw-------. 1 blu3sky 2000 1665 May 25 07:53 known_hosts
 -rw-------. 1 blu3sky 2000  919 May 25 07:52 known_hosts.old
 ```
@@ -798,7 +805,7 @@ $ sudo systemctl reload sshd
 [sudo] password for blu3sky: 
 ``` 
 
-### 10.4 Verify from the client
+### 10.4 Verify — passwordless login restored
 ```bash
 $ ssh blu3sky@192.168.122.88  
 Web console: https://server40.usman.com:9090/ or https://192.168.122.88:9090/
@@ -819,6 +826,7 @@ blu3sky@server40:~$
 
 ```
 > Passwordless login is restored
+
 ### 10.5  Logout
 
 ```bash
@@ -828,6 +836,7 @@ Connection to 192.168.122.88 closed.
 blue@server30:~$ 
 
 ```
+
 ## 11. PermitRootLogin Configuration - server 
 
 ### 11.1 Locate the active directive
@@ -848,17 +857,18 @@ $ sudo grep -rin "Permit"  /etc/ssh/
 ```
 The drop-in `sshd_config.d/01-permitrootlogin.conf` sets `PermitRootLogin yes` and takes precedence over the `no` in `sshd_config`. This is why root login works even when the main config appears to disable it. Always audit drop-in files first when a directive behaves unexpectedly — use `grep -rin` to search across all files at once.
 
-### 11.2 Disable root login
+### 11.2 Block root login — edit the drop-in file
 
 ```bash
 $ sudo vi /etc/ssh/sshd_config.d/01-permitrootlogin.conf 
 ```
-change: `yes` to `no`
+Change `PermitRootLogin yes` to `PermitRootLogin no`, then reload:
+
 ### 11.3 Reload daemon 
 ```bash
 $ sudo systemctl reload sshd
 ```
-### 11.4 Attempt root login from the client
+### 11.4 Verify — root login blocked even with correct password
 ```bash
 $ ssh root@192.168.122.88  
 root@192.168.122.88's password: 
@@ -870,7 +880,7 @@ root@192.168.122.88: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,p
 ```
 > Root login is blocked — even with the correct password and a previously distributed key.
 
-### 11.5 Behavior with an invalid directive value
+### 11.5 What happens with no value set
 ```bash
 $ sudo vi /etc/ssh/sshd_config.d/01-permitrootlogin.conf 
 ```
@@ -890,14 +900,15 @@ $ ssh root@192.168.122.88
 ssh: connect to host 192.168.122.88 port 22: Connection refused
 ```
 
-A `PermitRootLogin` directive with no value causes `sshd` to treat the configuration as invalid on reload, resulting in the daemon refusing all incoming connections — not just root ones. This is a host-wide outage affecting every user.
+> A `PermitRootLogin` directive with no value causes `sshd` to treat the configuration as invalid on reload, resulting in the daemon refusing all incoming connections — not just root ones. This is a host-wide outage affecting every user.
 
 
-### 11.6 Reset root login
+### 11.6 Reset — restore root login
 ```bash
 $ sudo vi /etc/ssh/sshd_config.d/01-permitrootlogin.conf 
 ```
-Restore to:
+Set back to:
+
 ```
 PermitRootLogin yes
 ```
@@ -957,5 +968,7 @@ root@server40:~#
 - Add `server-ip hostname` to `/etc/hosts` on the client to use hostnames instead of IPs: `ssh user@server40` instead of `ssh user@192.168.122.88`.
 
 
+**StrictHostKeyChecking:**
+- Controls whether new hosts are automatically added to `known_hosts` and how key mismatches are handled. Default is `ask` — SSH prompts on first connection and rejects if the stored key changes.
 
 
