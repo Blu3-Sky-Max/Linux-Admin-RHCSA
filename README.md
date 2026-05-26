@@ -69,9 +69,8 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 - **Focus:** Hostname management, protocols and ports, IPv4/IPv6, classful addressing, subnetting and subnet masks, CIDR notation, NetworkManager connection profiles, two-machine local networking via host table, and SFTP connectivity.
 - **Status:** Completed.
 ### Lab 18: 🔐 [OpenSSH Service Management](./SSH-Management.md)
-- **Focus:** SSH service configuration, key-based authentication, SFTP, and PermitRootLogin control
+- **Focus:** SSH architecture, symmetric/asymmetric encryption, key-based authentication, `ssh-keygen`, `ssh-copy-id`, SFTP file transfer, multi-user key distribution, `authorized_keys` permission repair, and `PermitRootLogin` control via drop-in config.
 - **Status:** Completed.
-
 
 ---
 
