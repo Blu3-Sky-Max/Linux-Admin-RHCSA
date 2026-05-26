@@ -671,7 +671,7 @@ logout
 Connection to 192.168.122.88 closed.
 ```
 
-### 9.8 Log into other users - without distrubting keys 
+### 9.8 Log into other users - without distributing keys 
 ```bash
 $ ssh usman12@192.168.122.88  
 usman12@192.168.122.88's password: 
