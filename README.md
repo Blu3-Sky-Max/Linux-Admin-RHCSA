@@ -72,6 +72,12 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 - **Focus:** SSH architecture, symmetric/asymmetric encryption, key-based authentication, `ssh-keygen`, `ssh-copy-id`, SFTP file transfer, multi-user key distribution, `authorized_keys` permission repair, and `PermitRootLogin` control via drop-in config.
 - **Status:** Completed.
 
+### Lab 19: 🔥 [Firewall Management](./Firewall-Management.md)
+- **Focus:** firewalld architecture, zone-based traffic management, predefined zone descriptions, service and port rules (runtime vs. permanent), live SSH block/restore demonstration, rich rules with source IP scoping, custom zone creation via XML template, zone target configuration (`%%REJECT%%`), interface binding, and port forwarding via `firewall-cmd`.
+- **Status:** Completed.
+
+
+
 ---
 
 Copyright © 2026 Usman Olanrewaju. All rights reserved. Licensed under the [MIT License](./LICENSE).
