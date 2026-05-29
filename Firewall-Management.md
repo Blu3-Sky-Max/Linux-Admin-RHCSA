@@ -235,7 +235,7 @@ $ sudo firewall-cmd --state
 running
 ```
 
-### 4.1.1 Verfing with systemctl 
+### 4.1.1 verifying with systemctl 
 ```bash 
 $ sudo systemctl status firewalld
 [sudo] password for blu3sky: 
@@ -339,7 +339,7 @@ $ sudo cat /etc/firewalld/zones/public.xml
 
 ## 6 Adding ports and managing zones 
 
-### 6.1 intial status of ports
+### 6.1 initial status of ports
 ```bash
 $ sudo firewall-cmd --list-ports 
 
