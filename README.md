@@ -75,7 +75,9 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 ### Lab 19: 🔥 [Firewall Management](./Firewall-Management.md)
 - **Focus:** firewalld architecture, zone-based traffic management, predefined zone descriptions, service and port rules (runtime vs. permanent), live SSH block/restore demonstration, rich rules with source IP scoping, custom zone creation via XML template, zone target configuration (`%%REJECT%%`), interface binding, and port forwarding via `firewall-cmd`.
 - **Status:** Completed.
-
+### Lab 20: 🔐 [SELinux Management](./SELinux-Management.md)
+- **Focus:** SELinux architecture (MAC vs DAC), context structure (user:role:type:level), policy enforcement, AVC, mode management (`getenforce`, `setenforce`, `grubby`), security contexts for processes, files, and ports, context modification with `chcon`, persistent labeling with `semanage fcontext` and `restorecon`, port label management, copy/move context inheritance behavior, and Boolean toggling with reboot-verified persistence.
+- **Status:** Completed.
 
 
 ---
