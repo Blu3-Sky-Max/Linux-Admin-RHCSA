@@ -117,7 +117,7 @@ at> free -h | grep Mem &>> /home/blue/memory.info
 at> <EOT>
 job 8 at Sun Jul  5 10:30:00 2026
 ```
-#### 2.3.2 VERIFY 
+#### 2.3.2 Verify 
 ```bash
 $ at -l 
 6	Sun Jul  5 10:30:00 2026 a blue
@@ -136,7 +136,7 @@ $ at -l
 8	Sun Jul  5 10:30:00 2026 a blue
 ```
 
-#### 2.4.2 Verify form a log file
+#### 2.4.2 Verify from a log file
 ```bash
 $ sudo ls -l   /var/spool/at
 [sudo] password for blue: 
@@ -159,7 +159,7 @@ Every line in a crontab follows this exact field order:
 |  |  |  ┌------> month         (1 - 12)
 |  │  |  │  ┌---> day of week   (0 - 7)  [0 and 7 are both Sunday]
 |  |  |  |  |
-*  *  *  *  *  **command to executie** 
+*  *  *  *  *  command to execute
 ```
 
 | Field | Allowed Values | Special Characters |
@@ -381,4 +381,18 @@ $ cat /var/spool/cron/vm3
 */5  10-12   5,20  *  *  echo "Usman is always in the library" >> /home/vm3/usman.txts
 ```
 
+## 7. Key Takeaways
 
+- **`atd`** handles one-time jobs; **`crond`** handles recurring jobs; **`anacron`** handles periodic jobs that must survive reboots.
+- At startup, `crond` reads `/var/spool/cron` and `/etc/cron.d`, loads schedules into memory, and scans for changes at short intervals — no daemon restart needed after editing a crontab.
+- All `at` jobs are spooled in `/var/spool/at`; you do not need to restart `atd` after submitting a job.
+- `at` accepts many time formats: `at noon`, `at midnight`, `at 23:45`, `at now + 5min`, `at 10:30am 07/05/2026`.
+- The **allow file always wins**: if `at.allow` or `cron.allow` exists (even empty), the deny file is completely ignored. Only when the allow file is absent does the deny file apply.
+- If **both files are absent**, no users are permitted (only `root`). An **empty deny file** permits all users.
+- Cron's five fields: `minute hour day-of-month month day-of-week`. Memorize the order.
+- Special characters: `*` (all), `,` (list), `-` (range), `/` (step). They combine — e.g., `*/5 10-12 5,20 * *`.
+- When both day-of-month and day-of-week are specified (neither is `*`), cron fires if **either** condition matches — not both.
+- `@reboot`, `@daily`, `@weekly`, etc. are valid shorthand replacements for the five time fields.
+- Both `atd` and `crond` log all activity to `/var/log/cron` — including job launch (`CMD`), completion (`CMDEND`), daemon restarts, and crontab edits (`BEGIN EDIT`/`END EDIT`). Root privilege required to read.
+- `anacron` checks `/var/spool/anacron/` timestamps on boot and runs any overdue jobs after a configurable delay (`delay` field in `/etc/anacrontab`).
+                                                               
