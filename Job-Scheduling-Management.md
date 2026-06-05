@@ -1,6 +1,7 @@
 # System Job Scheduling: AT vs. CRON Management 
 
-**Author:** Usman Opeyemi Olanrewaju (Blu3 Sky)  
+**Author:** Usman O. Olanrewaju (Blu3 Sky)  
+
 
 **Date:** 2026/02/24  
 
