@@ -79,6 +79,9 @@ Documentation and logs of system-level configurations, troubleshooting, and main
 - **Focus:** SELinux architecture (MAC vs DAC), context structure (user:role:type:level), policy enforcement, AVC, mode management (`getenforce`, `setenforce`, `grubby`), security contexts for processes, files, and ports, context modification with `chcon`, persistent labeling with `semanage fcontext` and `restorecon`, port label management, copy/move context inheritance behavior, and Boolean toggling with reboot-verified persistence.
 - **Status:** Completed.
 
+### Lab 21: 📝 [Afterword](./Afterword.md)
+- **Focus:** Exam result breakdown, PSI proctor protocol, pre/during/post exam guidance, and notes for future RHCSA candidates.
+- **Status:** Completed.
 
 ---
 
