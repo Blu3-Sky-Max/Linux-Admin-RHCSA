@@ -19,10 +19,15 @@
 
 ## 1. Certification Result
 
+
 **Credential:** [Red Hat Certified System Administrator (RHCSA)](https://www.credly.com/badges/b63664f0-67d2-455d-99b5-5858cb497056/public_url)
+
 **Exam:** EX200 on Red Hat Enterprise Linux 10
+
 **Score:** 237 / 300 — PASS (threshold: 210)
+
 **Date:** 2026/06/29
+
 **Valid Until:** 2029/06/29
 
 ### Objective Breakdown
@@ -31,13 +36,12 @@
 |----------------------------------------|-------|
 | Understand and use essential tools     | 64%   |
 | Manage software                        | 50%   |
-| Create simple shell scripts            | 0%    |    ---> sighs 
+| Create simple shell scripts            | 0%    |    
 | Operate running systems                | 75%   |
 | Configure local storage                | 100%  |
 | Create and configure file systems      | 100%  |
 | Deploy, configure and maintain systems | 89%   |
 | Create and configure file systems      | 100%  |
-| Deploy, configure and maintain systems | 89%   |
 | Manage basic networking                | 100%  |
 | Manage users and groups                | 100%  |
 | Manage security                        | 100%  |
@@ -55,7 +59,9 @@ Three hours for 21 tasks is tight. My shell scripting task zeroed out — not be
 The documentation here is a combination of my own hands-on knowledge and three core references:
 
 - **William Shotts** — *The Linux Command Line* (the book that started it all)
+
 - **Asghar Ghori** — *RHCSA Red Hat Enterprise Linux 10* (primary exam reference)
+
 - A third Linux book to be added — details coming later
 
 > You need to practice, practice, and practice. Reading alone will not pass this exam. The lab environment is brutal — but it is honest. Think beyond the textbook and build intuition on the terminal.
@@ -67,7 +73,7 @@ The documentation here is a combination of my own hands-on knowledge and three c
 
 **Practice:** Get your hands dirty on the terminal every single day. The goal is not the certificate — the certificate is a test of what your brain already knows. Build the brain first.
 
-**Typing speed:** My typing speed at exam time was approximately 56 WPM. Higher is better — every second counts under time pressure. Practice accordingly.
+**Typing speed:** My typing speed at exam time was approximately 67 WPM. Higher is better — every second counts under time pressure. Practice accordingly.
 
 **Compatibility test:** Run the Red Hat compatibility check on your exam hardware before the exam day. Confirm webcam, ethernet, and display all pass. Do not leave this for the last minute.
 
@@ -129,7 +135,4 @@ For questions — personal, exam-related, or if you want to know which practice 
 ---
 
 > **Go further in lightness.**
-                                                                                           109,1         Bot
-
-
-
+                                                                    
